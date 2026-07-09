@@ -19,7 +19,6 @@ namespace AskaPlantGrass
 
         internal static ConfigEntry<bool> ConfigEnabled;
         internal static ConfigEntry<KeyCode> ConfigKey;
-        internal static ConfigEntry<float> ConfigRadius;
 
         public override void Load()
         {
@@ -29,8 +28,6 @@ namespace AskaPlantGrass
                 "Master on/off switch for the grass-restore tool.");
             ConfigKey = Config.Bind("PlantGrass", "Key", KeyCode.RightBracket,
                 "Key that paints grass at your feet.");
-            ConfigRadius = Config.Bind("PlantGrass", "Radius", 1f,
-                "Radius (meters) of the paint effect.");
 
             ClassInjector.RegisterTypeInIl2Cpp<PlantGrassTool>();
             Harmony.CreateAndPatchAll(typeof(CharacterSpawnPatch));

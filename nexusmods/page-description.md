@@ -23,7 +23,12 @@ After first launch, edit `BepInEx\config\smithio.aska.plantgrass.cfg`:
 |---|---|---|
 | `Enabled` | `true` | Master on/off switch |
 | `Key` | `RightBracket` | Key that paints grass at your feet |
-| `Radius` | `1` | Radius in meters of the paint effect |
+
+The paint radius (1m) is fixed and not configurable.
+
+## Known issues
+
+- **Painted grass does not currently persist across a game restart** — it reverts to dirt after closing and relaunching the game. Being investigated.
 
 ## Multiplayer
 

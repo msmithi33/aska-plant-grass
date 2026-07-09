@@ -20,7 +20,8 @@ Roads, paths, and bedrock are left untouched, and the tool won't paint at all if
 |---|---|---|
 | `Enabled` | `true` | Master on/off switch |
 | `Key` | `RightBracket` | Key that paints grass at your feet |
-| `Radius` | `1` | Radius in meters of the paint effect |
+
+The paint radius (1m) is fixed, not configurable — see [DEVELOPMENT.md](DEVELOPMENT.md) for why.
 
 ## Multiplayer
 

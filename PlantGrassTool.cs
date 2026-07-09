@@ -5,6 +5,8 @@ namespace AskaPlantGrass
 {
     public class PlantGrassTool : MonoBehaviour
     {
+        private const float RadiusMeters = 1f;
+
         private HeightmapTool _heightmapTool;
         private readonly TerraformingToolOperation _operation = TerraformingToolOperation.PAINT;
 
@@ -33,7 +35,7 @@ namespace AskaPlantGrass
             // colliders (interaction range, heat/warmth radius, etc.) that aren't
             // its physical footprint and would otherwise cause false positives far
             // outside the building's actual extent.
-            foreach (var overlap in Physics.OverlapSphere(position, Plugin.ConfigRadius.Value))
+            foreach (var overlap in Physics.OverlapSphere(position, RadiusMeters))
             {
                 if (!overlap.CompareTag(Structure.c_FootprintTag))
                     continue;
@@ -49,7 +51,7 @@ namespace AskaPlantGrass
                 }
             }
 
-            _heightmapTool.radius = Plugin.ConfigRadius.Value;
+            _heightmapTool.radius = RadiusMeters;
             _heightmapTool.clearVegetation = false;
             _heightmapTool.setTerrainType = true;
             _heightmapTool.terrainType = TerraformingMap.TerrainType.NATURAL;
@@ -62,7 +64,7 @@ namespace AskaPlantGrass
             _heightmapTool.Run(_operation, position);
             _heightmapTool.PaintHere();
 
-            Plugin.Log.LogInfo($"Grass restored at {position} (radius {Plugin.ConfigRadius.Value}).");
+            Plugin.Log.LogInfo($"Grass restored at {position}.");
         }
     }
 }
