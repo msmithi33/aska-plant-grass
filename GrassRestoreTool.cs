@@ -27,12 +27,24 @@ namespace AskaGrassRestore
 
             // Terrain type alone doesn't exclude buildings - the ground under a
             // structure is still typed DIRT/NATURAL. Skip painting entirely if any
-            // placed Structure overlaps the paint radius.
+            // placed Structure's actual footprint overlaps the paint radius.
+            // Only consider colliders tagged as the structure's ground footprint
+            // (Structure.c_FootprintTag) - a Structure can carry other, much larger
+            // colliders (interaction range, heat/warmth radius, etc.) that aren't
+            // its physical footprint and would otherwise cause false positives far
+            // outside the building's actual extent.
             foreach (var overlap in Physics.OverlapSphere(position, Plugin.ConfigRadius.Value))
             {
-                if (overlap.GetComponentInParent<Structure>() != null)
+                if (!overlap.CompareTag(Structure.c_FootprintTag))
+                    continue;
+
+                var structure = overlap.GetComponentInParent<Structure>();
+                if (structure != null)
                 {
-                    Plugin.Log.LogInfo($"Skipped grass restore at {position}: a structure is in range.");
+                    Plugin.Log.LogInfo(
+                        $"Skipped grass restore at {position}: blocked by structure '{structure.GetName()}' " +
+                        $"(footprint collider '{overlap.gameObject.name}' at {overlap.transform.position}, " +
+                        $"{Vector3.Distance(position, overlap.transform.position):F2}m away).");
                     return;
                 }
             }
