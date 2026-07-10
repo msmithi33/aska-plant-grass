@@ -13,7 +13,7 @@ namespace AskaPlantGrass
     {
         public const string PluginGuid = "smithio.aska.plantgrass";
         public const string PluginName = "Aska Plant Grass";
-        public const string PluginVersion = "0.1.0";
+        public const string PluginVersion = "0.1.1";
 
         internal static new ManualLogSource Log;
 

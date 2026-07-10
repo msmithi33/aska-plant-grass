@@ -1,6 +1,6 @@
 {
     "name": "PlantGrass",
-    "version_number": "0.1.0",
+    "version_number": "0.1.1",
     "website_url": "https://github.com/msmithi33/aska-plant-grass",
     "description": "Repaint grass onto trampled dirt/mud terrain with a keypress.",
     "dependencies": [
